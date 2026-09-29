@@ -8,19 +8,22 @@
   const navLinks = $$('.nav-link');
 
   const closeMenu = () => {
+    if (!navigation || !menuToggle) return;
     navigation.classList.remove('is-open');
     menuToggle.setAttribute('aria-expanded', 'false');
     menuToggle.setAttribute('aria-label', 'Άνοιγμα μενού');
   };
 
-  menuToggle.addEventListener('click', () => {
-    const isOpen = navigation.classList.toggle('is-open');
-    menuToggle.setAttribute('aria-expanded', String(isOpen));
-    menuToggle.setAttribute('aria-label', isOpen ? 'Κλείσιμο μενού' : 'Άνοιγμα μενού');
-  });
+  if (menuToggle && navigation) {
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navigation.classList.toggle('is-open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.setAttribute('aria-label', isOpen ? 'Κλείσιμο μενού' : 'Άνοιγμα μενού');
+    });
+  }
   navLinks.forEach((link) => link.addEventListener('click', closeMenu));
 
-  const setScrolledHeader = () => header.classList.toggle('is-scrolled', window.scrollY > 42);
+  const setScrolledHeader = () => { if (header) header.classList.toggle('is-scrolled', window.scrollY > 42); };
   setScrolledHeader();
   window.addEventListener('scroll', setScrolledHeader, { passive: true });
 
@@ -29,12 +32,11 @@
   const progress = $('.slider-progress span');
   let activeSlide = 0;
   let sliderTimer;
-
   const renderSlide = (index) => {
     activeSlide = (index + slides.length) % slides.length;
     slides.forEach((slide, slideIndex) => slide.classList.toggle('is-active', slideIndex === activeSlide));
-    slideCount.textContent = String(activeSlide + 1).padStart(2, '0');
-    progress.style.width = `${((activeSlide + 1) / slides.length) * 100}%`;
+    if (slideCount) slideCount.textContent = String(activeSlide + 1).padStart(2, '0');
+    if (progress) progress.style.width = `${((activeSlide + 1) / slides.length) * 100}%`;
   };
   const restartSlider = () => {
     window.clearInterval(sliderTimer);
@@ -44,8 +46,10 @@
     renderSlide(activeSlide + (button.dataset.direction === 'next' ? 1 : -1));
     restartSlider();
   }));
-  renderSlide(0);
-  restartSlider();
+  if (slides.length) {
+    renderSlide(0);
+    restartSlider();
+  }
 
   const revealItems = $$('.reveal-on-scroll');
   if ('IntersectionObserver' in window) {
@@ -69,11 +73,13 @@
   const modalTitle = $('#modal-title');
   const modalDetail = $('#modal-detail');
   const closeModal = () => {
+    if (!modal) return;
     modal.classList.remove('is-open');
     modal.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('modal-open');
   };
   $$('.service-trigger').forEach((trigger) => trigger.addEventListener('click', () => {
+    if (!modal) return;
     const card = trigger.closest('.service-card');
     modalTitle.textContent = `Ασφάλιση ${card.dataset.service}`;
     modalDetail.textContent = card.dataset.detail;
@@ -81,32 +87,42 @@
     modal.setAttribute('aria-hidden', 'false');
     document.body.classList.add('modal-open');
   }));
-  $('.modal-close').addEventListener('click', closeModal);
-  $('.modal-backdrop').addEventListener('click', closeModal);
+  if (modal) {
+    $('.modal-close', modal).addEventListener('click', closeModal);
+    $('.modal-backdrop', modal).addEventListener('click', closeModal);
+  }
   document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeModal(); });
   $$('.modal-card a').forEach((link) => link.addEventListener('click', closeModal));
 
   const cookieBanner = $('#cookie-banner');
   const cookieKey = 'kotsalos-cookie-consent';
-  if (!localStorage.getItem(cookieKey)) window.setTimeout(() => cookieBanner.classList.add('is-visible'), 900);
-  $$('.cookie-accept, .cookie-dismiss').forEach((button) => button.addEventListener('click', () => {
-    localStorage.setItem(cookieKey, button.classList.contains('cookie-accept') ? 'accepted' : 'declined');
-    cookieBanner.classList.remove('is-visible');
-  }));
+  if (cookieBanner) {
+    if (!localStorage.getItem(cookieKey)) window.setTimeout(() => cookieBanner.classList.add('is-visible'), 900);
+    $$('.cookie-accept, .cookie-dismiss').forEach((button) => button.addEventListener('click', () => {
+      localStorage.setItem(cookieKey, button.classList.contains('cookie-accept') ? 'accepted' : 'declined');
+      cookieBanner.classList.remove('is-visible');
+    }));
+  }
 
   const form = $('#contact-form');
   const formStatus = $('.form-status');
-  form.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const data = Object.fromEntries(new FormData(form).entries());
-    const requests = JSON.parse(localStorage.getItem('kotsalos_requests') || '[]');
-    requests.push({ ...data, createdAt: new Date().toISOString() });
-    localStorage.setItem('kotsalos_requests', JSON.stringify(requests));
-    form.reset();
-    formStatus.textContent = 'Ευχαριστούμε — θα επικοινωνήσουμε μαζί σας σύντομα.';
-  });
+  if (form) {
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const data = Object.fromEntries(new FormData(form).entries());
+      const requests = JSON.parse(localStorage.getItem('kotsalos_requests') || '[]');
+      requests.push({ ...data, createdAt: new Date().toISOString() });
+      localStorage.setItem('kotsalos_requests', JSON.stringify(requests));
+      form.reset();
+      if (formStatus) formStatus.textContent = 'Ευχαριστούμε — θα επικοινωνήσουμε μαζί σας σύντομα.';
+    });
+  }
 
-  $('.back-to-top').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-  window.addEventListener('scroll', () => $('.back-to-top').classList.toggle('is-visible', window.scrollY > 550), { passive: true });
-  $('#year').textContent = new Date().getFullYear();
+  const backToTop = $('.back-to-top');
+  if (backToTop) {
+    backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    window.addEventListener('scroll', () => backToTop.classList.toggle('is-visible', window.scrollY > 550), { passive: true });
+  }
+  const year = $('#year');
+  if (year) year.textContent = new Date().getFullYear();
 })();
