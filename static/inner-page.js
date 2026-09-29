@@ -64,6 +64,8 @@
   const title = current.title.split('\\n');
   const hero = `<section class="page-hero"><div class="container"><p class="eyebrow"><span></span> ${current.eyebrow}</p><h1>${title[0]}${title[1] ? `<br /><em>${title[1]}</em>` : ''}</h1><p>${current.subtitle}</p><div class="breadcrumb"><a href="../">Αρχική</a><i class="fa-solid fa-chevron-right"></i><span>${current.eyebrow}</span></div></div></section>`;
   pageApp.innerHTML = shell(hero + current.body);
+  const compactLogo = pageApp.querySelector('.brand img');
+  if (compactLogo) compactLogo.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-MiWH6vD_JxBAnH_dAS7SssXDtDy09s30eNz94Ph3rfwfg-5nm7xXGdRo&s=10';
   const detailImages = [
     ['photo-1560185008-b033106af5c3', 'Σύγχρονη κατοικία'],
     ['photo-1503376780353-7e6692767b70', 'Αυτοκίνητο στον δρόμο'],
