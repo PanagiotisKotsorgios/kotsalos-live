@@ -164,15 +164,17 @@ h1 em, h2 em { color: #a6c9ff; font-style: normal; }
 .stat-card p { margin: 16px 0 4px; color: var(--white); font-size: 13px; font-weight: 800; }
 .stat-card small { color: #9eb6df; font-size: 10px; letter-spacing: .04em; text-transform: uppercase; }
 
-.promise-section { background: #e9f1fc; color: var(--navy-900); }
+.promise-section { position: relative; overflow: hidden; background: linear-gradient(100deg, rgba(3,15,43,.98) 0%, rgba(5,25,64,.93) 52%, rgba(7,26,69,.82) 100%), url('https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=2200&q=88') center / cover; color: var(--white); }
+.promise-section::after { content: ''; position: absolute; right: -140px; bottom: -220px; width: 520px; height: 520px; border: 1px solid rgba(166,201,255,.18); border-radius: 50%; box-shadow: 0 0 0 24px rgba(166,201,255,.04), 0 0 0 48px rgba(166,201,255,.025); pointer-events: none; }
 .promise-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 130px; align-items: center; }
-.promise-copy h2 { color: var(--navy-900); }
-.promise-copy > p:not(.eyebrow) { max-width: 420px; margin: 28px 0 32px; color: #53698d; font-size: 14px; line-height: 1.85; }
-.promise-list { border-top: 1px solid #c7d5e8; }
-.promise-list > div { display: grid; grid-template-columns: 44px 1fr; column-gap: 17px; padding: 24px 0; border-bottom: 1px solid #c7d5e8; }
-.promise-list > div > span { grid-row: span 2; color: #5a84be; }
-.promise-list strong { font-size: 14px; }
-.promise-list p { margin: 6px 0 0; color: #607697; font-size: 12px; }
+.promise-copy, .promise-list { position: relative; z-index: 1; }
+.promise-copy h2 { color: var(--white); }
+.promise-copy > p:not(.eyebrow) { max-width: 420px; margin: 28px 0 32px; color: #c1d0e8; font-size: 15px; font-weight: 600; line-height: 1.85; }
+.promise-list { border-top: 1px solid rgba(255,255,255,.2); }
+.promise-list > div { display: grid; grid-template-columns: 44px 1fr; column-gap: 17px; padding: 24px 0; border-bottom: 1px solid rgba(255,255,255,.2); }
+.promise-list > div > span { grid-row: span 2; color: var(--blue-500); }
+.promise-list strong { color: var(--white); font-size: 16px; }
+.promise-list p { margin: 6px 0 0; color: #b4c5e2; font-size: 14px; font-weight: 600; }
 
 .contact-section { background: #f0f5fc; }
 .contact-panel { display: grid; grid-template-columns: .9fr 1.1fr; overflow: hidden; border-radius: 34px; background: var(--navy-900); box-shadow: var(--shadow); }
