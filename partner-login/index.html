@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="el">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#071a45" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" href="../static/site.css" />
+    <title>Πύλη συνεργάτη | Κότσαλος Insurance</title>
+  </head>
+  <body class="portal-page">
+    <div class="portal-shell">
+      <a class="portal-back" href="../"><i class="fa-solid fa-arrow-left"></i> Επιστροφή στην αρχική</a>
+      <main class="portal-layout">
+        <section class="portal-brand-panel">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSSzqeM8EVenTnPbbinzekyDpOK8Rxwzu6D5ROOTY_fw&amp;s" alt="Κότσαλος Ασφαλιστικές Χρηματοοικονομικές Υπηρεσίες" />
+          <p class="eyebrow"><span></span> Partner portal</p>
+          <h1>Η συνεργασία μας,<br /><em>σε ένα σημείο.</em></h1>
+          <p>Η πύλη συνεργάτη είναι ένας ενιαίος χώρος για την καθημερινή σας ενημέρωση και εξυπηρέτηση.</p>
+          <div class="portal-highlights"><span><i class="fa-solid fa-shield-halved"></i> Ασφαλής πρόσβαση</span><span><i class="fa-solid fa-headset"></i> Υποστήριξη συνεργατών</span></div>
+        </section>
+        <section class="portal-card" aria-labelledby="portal-title">
+          <img class="portal-mark" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-MiWH6vD_JxBAnH_dAS7SssXDtDy09s30eNz94Ph3rfwfg-5nm7xXGdRo&amp;s=10" alt="Κότσαλος Insurance" />
+          <p class="eyebrow eyebrow-dark"><span></span> Κότσαλος Insurance</p>
+          <h2 id="portal-title">Σύνδεση συνεργάτη</h2>
+          <p class="portal-intro">Συμπληρώστε τα στοιχεία σας για να συνεχίσετε.</p>
+          <form id="partner-login-form" class="portal-form">
+            <label for="partner-email">Email συνεργάτη</label>
+            <div class="portal-input"><i class="fa-solid fa-envelope"></i><input id="partner-email" name="email" type="email" placeholder="email@example.com" autocomplete="username" required /></div>
+            <label for="partner-password">Κωδικός πρόσβασης</label>
+            <div class="portal-input"><i class="fa-solid fa-lock"></i><input id="partner-password" name="password" type="password" placeholder="Ο κωδικός σας" autocomplete="current-password" required /><button class="portal-password-toggle" type="button" aria-label="Εμφάνιση κωδικού"><i class="fa-solid fa-eye"></i></button></div>
+            <div class="portal-options"><label class="portal-check"><input type="checkbox" name="remember" /> <span>Να με θυμάσαι</span></label><span class="portal-help">Ξεχάσατε τον κωδικό;</span></div>
+            <button class="button button-primary portal-submit" type="submit">Σύνδεση <i class="fa-solid fa-arrow-right"></i></button>
+            <p class="portal-status" role="status" aria-live="polite"></p>
+          </form>
+          <p class="portal-demo"><i class="fa-solid fa-circle-info"></i> Η σελίδα είναι demo και δεν πραγματοποιεί πραγματική σύνδεση.</p>
+        </section>
+      </main>
+    </div>
+    <script src="../static/portal.js"></script>
+  </body>
+</html>

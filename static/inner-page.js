@@ -64,14 +64,16 @@
   const title = current.title.split('\\n');
   const hero = `<section class="page-hero"><div class="container"><p class="eyebrow"><span></span> ${current.eyebrow}</p><h1>${title[0]}${title[1] ? `<br /><em>${title[1]}</em>` : ''}</h1><p>${current.subtitle}</p><div class="breadcrumb"><a href="../">Αρχική</a><i class="fa-solid fa-chevron-right"></i><span>${current.eyebrow}</span></div></div></section>`;
   pageApp.innerHTML = shell(hero + current.body);
-  const portal = document.createElement('span');
+  const portal = document.createElement('a');
   portal.className = 'nav-portal';
+  portal.href = '../partner-login/';
   portal.setAttribute('aria-label', 'Πύλη συνεργάτη');
   portal.innerHTML = '<i class="fa-solid fa-handshake"></i> Πύλη συνεργάτη';
   const pageNavigation = pageApp.querySelector('.main-navigation');
   if (pageNavigation) pageNavigation.appendChild(portal);
-  const footerPortal = document.createElement('span');
+  const footerPortal = document.createElement('a');
   footerPortal.className = 'footer-portal';
+  footerPortal.href = '../partner-login/';
   footerPortal.innerHTML = '<i class="fa-solid fa-handshake"></i> Πύλη συνεργάτη';
   const footerNavigation = pageApp.querySelector('.footer-grid > div:nth-child(2)');
   if (footerNavigation) footerNavigation.appendChild(footerPortal);
