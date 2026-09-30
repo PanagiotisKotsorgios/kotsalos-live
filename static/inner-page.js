@@ -64,6 +64,17 @@
   const title = current.title.split('\\n');
   const hero = `<section class="page-hero"><div class="container"><p class="eyebrow"><span></span> ${current.eyebrow}</p><h1>${title[0]}${title[1] ? `<br /><em>${title[1]}</em>` : ''}</h1><p>${current.subtitle}</p><div class="breadcrumb"><a href="../">Αρχική</a><i class="fa-solid fa-chevron-right"></i><span>${current.eyebrow}</span></div></div></section>`;
   pageApp.innerHTML = shell(hero + current.body);
+  const portal = document.createElement('span');
+  portal.className = 'nav-portal';
+  portal.setAttribute('aria-label', 'Πύλη συνεργάτη');
+  portal.innerHTML = '<i class="fa-solid fa-handshake"></i> Πύλη συνεργάτη';
+  const pageNavigation = pageApp.querySelector('.main-navigation');
+  if (pageNavigation) pageNavigation.appendChild(portal);
+  const footerPortal = document.createElement('span');
+  footerPortal.className = 'footer-portal';
+  footerPortal.innerHTML = '<i class="fa-solid fa-handshake"></i> Πύλη συνεργάτη';
+  const footerNavigation = pageApp.querySelector('.footer-grid > div:nth-child(2)');
+  if (footerNavigation) footerNavigation.appendChild(footerPortal);
   const compactLogo = pageApp.querySelector('.brand img');
   if (compactLogo) compactLogo.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-MiWH6vD_JxBAnH_dAS7SssXDtDy09s30eNz94Ph3rfwfg-5nm7xXGdRo&s=10';
   const detailImages = [
